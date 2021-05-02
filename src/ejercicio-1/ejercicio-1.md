@@ -86,13 +86,13 @@ Pila de llamada | Registro de eventos | Cola de manejadores | Salida
 Se ejecuta el console.log() por lo que se muestra por pantalla
 Pila de llamada | Registro de eventos | Cola de manejadores | Salida
 ---- | - | - | -
- |watcher.on()| |console.log()
+ .|watcher.on()| |console.log()
 
 ### 14º Paso 
 Aparece el callback de watcher.on() en la cola 
 Pila de llamada | Registro de eventos | Cola de manejadores | Salida
 ---- | ---- | ---- | ----
- |watcher.on()|callback de watcher| 
+ .|watcher.on()|callback de watcher| 
 
 ### 15º Paso 
 El callback pasa a la pila 
@@ -111,7 +111,7 @@ Pila de llamada | Registro de eventos | Cola de manejadores | Salida
 Se ejecuta el console.log() por lo que se muestra por la salida y el callback sale de la pila
 Pila de llamada | Registro de eventos | Cola de manejadores | Salida
 ---- | - | - | -
- |watcher.on()| |console.log() 
+ .|watcher.on()| |console.log() 
 
 Por último se repetirán los últimos 4 pasos hasta que el programa finalice.
 
