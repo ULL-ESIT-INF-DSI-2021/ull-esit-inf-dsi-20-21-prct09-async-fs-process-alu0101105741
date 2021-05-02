@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha",
+    "start": "tsc-watch --onSuccess \"node dist/classLowdbMenuManager.js\"",
+    "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls && rm -rf .nyc_output",
+    "eslint-init": "eslint --init",
+    "doc": "typedoc"
   },
   "repository": {
     "type": "git",
@@ -18,11 +22,24 @@
   },
   "homepage": "https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct09-async-fs-process-alu0101105741#readme",
   "devDependencies": {
+    "@types/chai": "^4.2.17",
+    "@types/mocha": "^8.2.2",
+    "@types/yargs": "^16.0.1",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
+    "chai": "^4.3.4",
     "eslint": "^7.25.0",
     "eslint-config-google": "^0.14.0",
+    "mocha": "^8.3.2",
+    "ts-node": "^9.1.1",
     "tsc-watch": "^4.2.9",
     "typedoc": "^0.20.36"
+  },
+  "dependencies": {
+    "@types/node": "^15.0.1",
+    "chalk": "^4.1.1",
+    "each-async": "^1.1.1",
+    "indent-string": "^5.0.0",
+    "yargs": "^16.2.0"
   }
 }
