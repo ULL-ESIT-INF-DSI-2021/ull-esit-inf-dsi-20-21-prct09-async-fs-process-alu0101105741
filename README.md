@@ -42,7 +42,7 @@ Y nos piden realizar una traza mostrando como se modifica el contenido de la pil
 1. ¿Qué hace la función access?
 2. ¿Para qué sirve el objeto constants?
 
-La traza debidamente realizada y la respuesta a las cuestiones se encuentran dentro del [fichero markdown]() de la carpeta del ejercicio-1 en el directorio src.
+La traza debidamente realizada y la respuesta a las cuestiones se encuentran dentro del [fichero markdown](https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct09-async-fs-process-alu0101105741/blob/main/src/ejercicio-1/ejercicio-1.md) de la carpeta del ejercicio-1 en el directorio src.
 
 ### Ejercicio 2
 En este ejercicio se nos pide realizar una aplicación que muestre la información sobre el número de líneas, palabras o caracteres que contiene un fichero de texto. Para ello deberemos hacer que el programa se ejecute desde la línea de comandos utilizando yargs para así poder pasarle como parámetros la ruta del fichero e indicarle al programa desde la línea de comandos si desea visualizar el número de líneas, palabras, caracteres o combinaciones de ellas. También tendremos que realizar el ejercicio de dos maneras diferentes:
