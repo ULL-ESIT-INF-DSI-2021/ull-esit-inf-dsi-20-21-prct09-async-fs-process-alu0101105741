@@ -43,9 +43,6 @@ yargs.command({
           case 'caracteres': {
             characters = true;
           }
-          default: {
-            console.log(chalk.red('ERROR: Arguments must be "lineas, palabras or caracteres" divided by a ","'));
-          }
         }
       });
 
@@ -68,11 +65,11 @@ yargs.command({
 yargs.parse();
 
 /**
- * asd
- * @param {string} path asd
- * @param {boolean} characters asd
- * @param {boolean} words asd
- * @param {boolean} lines sad
+ * Function that implements the use of the pipe function
+ * @param {string} path path of the file we want to get info
+ * @param {boolean} characters True if we want to know the number of characters flase if we dont want
+ * @param {boolean} words True if we want to know the number of words flase if we dont want
+ * @param {boolean} lines True if we want to know the number of lines flase if we dont want
  */
 export function pipe(path: string, characters: boolean, words: boolean, lines: boolean): void {
   fs.access(path, fs.constants.F_OK, (err) => {
@@ -82,34 +79,34 @@ export function pipe(path: string, characters: boolean, words: boolean, lines: b
         return;
       }
     } else {
-      if (characters) {
-        const echo = spawn('echo', ['Caracteres: ']);
-        echo.stdout.pipe(process.stdout);
-        const wc = spawn('wc', ['-m', path]);
-        wc.stdout.pipe(process.stdout);
-      }
-      if (words) {
-        const echo = spawn('echo', ['Palabras: ']);
-        echo.stdout.pipe(process.stdout);
-        const wc = spawn('wc', ['-w', path]);
-        wc.stdout.pipe(process.stdout);
-      }
-      if (lines) {
-        const echo = spawn('echo', ['Lineas: ']);
-        echo.stdout.pipe(process.stdout);
-        const wc = spawn('wc', ['-l', path]);
-        wc.stdout.pipe(process.stdout);
-      }
+      const wc = spawn('wc', [path]);
+      let wcOut: string = '';
+
+      wc.stdout.on('data', (data) => (wcOut = wcOut + data));
+
+      wc.on('close', () => {
+        const parameters: string[] = wcOut.split(/\s+/);
+
+        if (characters) {
+          spawn('echo', [`Caracteres: ${parameters[3]}`]).stdout.pipe(process.stdout);
+        }
+        if (words) {
+          spawn('echo', [`Palabras: ${parameters[2]}`]).stdout.pipe(process.stdout);
+        }
+        if (lines) {
+          spawn('echo', [`Lineas: ${parseInt(parameters[1]) + 1}`]).stdout.pipe(process.stdout);
+        }
+      });
     }
   });
 }
 
 /**
- * asd
- * @param {string} path asd
- * @param {boolean} characters asd
- * @param {boolean} words asd
- * @param {boolean} lines asd
+ * Function that dont implement the use of the pipe function
+ * @param {string} path path of the file we want to get info
+ * @param {boolean} characters True if we want to know the number of characters flase if we dont want
+ * @param {boolean} words True if we want to know the number of characters flase if we dont want
+ * @param {boolean} lines True if we want to know the number of characters flase if we dont want
  */
 export function noPipe(path: string, characters: boolean, words: boolean, lines: boolean): void {
   fs.access(path, fs.constants.F_OK, (err) => {
@@ -129,7 +126,7 @@ export function noPipe(path: string, characters: boolean, words: boolean, lines:
         let consoleOut: string = '';
 
         if (characters) {
-          consoleOut = consoleOut + `Palabras: ${parameters[3]}\n`;
+          consoleOut = consoleOut + `Caracteres: ${parameters[3]}\n`;
         }
         if (words) {
           consoleOut = consoleOut + `Palabras: ${parameters[2]}\n`;
